@@ -1,0 +1,18 @@
+{
+  "name": "greencryptopay-nodejs",
+  "version": "1.0.1",
+  "description": "Greencryptopay library for nodejs",
+  "type": "module",
+  "main": "src/Api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Developers team <support@greencryptopay.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.6"
+  },
+  "devDependencies": {
+    "npm": "^9.8"
+  }
+}
