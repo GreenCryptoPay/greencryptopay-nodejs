@@ -1,7 +1,11 @@
 {
   "name": "greencryptopay-nodejs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Greencryptopay library for nodejs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GreenCryptoPay/greencryptopay-nodejs"
+  },
   "type": "module",
   "main": "src/Api.js",
   "scripts": {
