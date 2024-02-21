@@ -86,12 +86,14 @@ import Api from 'greencryptopay-nodejs';
     const transferApi = Api.make('transfer', true);
 
     // Sign up
-    if (!merchantId) {
-        const data = await transferApi.merchant();
+    if (!merchantId || !secretKey) {    
+        const data = await transferApi.merchant('percent', 'https://example.com/callback');
         merchantId = data['merchant_id'];
+        secretKey = data['secret_key'];
     }
 
     transferApi.setMerchantId(merchantId);
+    transferApi.setSecretKey(secretKey);
     
 })()
 ```
@@ -100,7 +102,8 @@ import Api from 'greencryptopay-nodejs';
 
 | Name    | Parameters | Validation | Description |
 | :----  | :----  |  :----  |:---- |
-| merchant | — | — | — |
+| merchant | <ul><li>string feeType</li><li>string callbackUrl</li></ul>| <ul><li>Enum: [percent, fix]</li><li>Max: 200</li></ul> | <ul><li>Fee type</li><li>URL to send notifications about payments</li></ul>  |
+
 
 > **Operations:**
 

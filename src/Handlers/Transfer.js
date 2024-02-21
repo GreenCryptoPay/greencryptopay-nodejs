@@ -34,11 +34,32 @@ export class Transfer
     }
 
     /**
+     * @param secretKey
+     */
+    setSecretKey(secretKey)
+    {
+        this.#request.setSecretKey(secretKey)
+    }
+
+    /**
+     * @param feeType
+     * @param callbackUrl
      * @returns {*}
      */
-    merchant()
+    merchant(feeType, callbackUrl)
     {
-        return this.#request.get('merchant');
+        if (typeof(feeType) !== "string") {
+            throw new TypeError("Invalid argument 'feeType' must be a string");
+        }
+
+        if (typeof(callbackUrl) !== "string") {
+            throw new TypeError("Invalid argument 'callbackUrl' must be a string");
+        }
+
+        return this.#request.post('merchant', {
+            "fee_type": feeType,
+            "callback_url": callbackUrl
+        });
     }
 
     /**
@@ -119,7 +140,8 @@ export class Transfer
 
         return this.#request.get('payment_address/state', {
             "currency": currency,
-            "payment_address": paymentAddress
+            "payment_address": paymentAddress,
+            "merchant_id": this.#merchantId,
         });
     }
 
@@ -156,7 +178,8 @@ export class Transfer
 
         let params = {
             "currency": currency,
-            "payment_address": paymentAddress
+            "payment_address": paymentAddress,
+            "merchant_id": this.#merchantId,
         };
 
         if (txid !== undefined && txid !== null) {
@@ -219,7 +242,8 @@ export class Transfer
 
         let params = {
             "currency": currency,
-            "payment_address": paymentAddress
+            "payment_address": paymentAddress,
+            "merchant_id": this.#merchantId,
         };
 
         if (txid !== undefined && txid !== null) {
